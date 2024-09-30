@@ -18,6 +18,12 @@ This application sends messages to an Azure Event Hub.
    npm install @azure/event-hubs yargs
    ```
 
+3. To install globally as a binary:
+
+   ```bash
+   npm i -g .
+   ```
+
 ### Usage
 
 Run the script with the following command:
