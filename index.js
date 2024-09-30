@@ -4,7 +4,6 @@
 const { EventHubProducerClient } = require('@azure/event-hubs');
 const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
-const { version: packageVersion } = require('./package.json'); // Import version from package.json
 
 /**
  * Sends messages to an Azure Event Hub.
@@ -98,20 +97,8 @@ const argv = yargs(hideBin(process.argv))
         type: 'boolean',
         default: false
     })
-    .option('version', {
-        alias: 'V',
-        description: 'Show version number',
-        type: 'string',
-        default: packageVersion // Set default version to package.json version
-    })
-    .conflicts('verbose', 'version')
     .help()
     .alias('help', 'h')
     .argv;
-
-if (argv.version) {
-    console.log(packageVersion); // Output the version from package.json
-    process.exit(0);
-}
 
 sendMessages(argv['connection-string'], argv['eventhub-name'], argv['message-count'], argv['message-payload'], argv.verbose).catch(console.error);
